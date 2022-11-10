@@ -1,2 +1,0 @@
-# Mobillikehitysprojekti
-MobillikehitysprojektiD44
