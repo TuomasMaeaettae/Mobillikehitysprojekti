@@ -4,6 +4,7 @@ import {StyleSheet,Text,View,Image,TextInput,Button,TouchableOpacity,ScrollView,
 import styles from './Styles';
 import TopBar from './components/TopBar';
 import Luokka from "./Luokka";
+import Taulukko from "./components/Taulukko";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {getAuth, signInWithEmailAndPassword, firebase} from './firebase/Config'
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -86,6 +87,8 @@ export default function App() {
         <Tab.Screen name="Home" component={Home} options={{tabBarLabel: 'Etusivu',tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />),}}/>
       <Tab.Screen name="Luokka" component={Luokka} options={{tabBarLabel: 'Luokka',tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="google-classroom" color={color} size={26} />),}}/>
+      <Tab.Screen name="LuokkaTaulukko" component={Taulukko} options={{tabBarLabel: 'Luokka',tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="google-classroom" color={color} size={26} />),}}/>
             </Tab.Navigator>
     </NavigationContainer>

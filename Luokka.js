@@ -7,13 +7,7 @@ import { firestore, collection, USERS,} from './firebase/Config'
 export default function Luokka() {
   const [userss, setNewUserss] = useState([])
 
-  //const citiesRef = collection(db, "cities");
-  //const q = query(citiesRef, where("regions", "array-contains", "west_coast"));
-  //const q = query(collection(firestore,USERS), where("role", "array-contains", "Students"))
-
-
   useEffect(() => {
-    //const q = query(collection(firestore,USERS), where("role", "array-contains", "Student"));
     const q = query(collection(firestore,USERS));
 
     const unsubscribe = onSnapshot(q,(querySnapshot) => {
