@@ -1,6 +1,11 @@
 import {initializeApp} from 'firebase/app';
-import {getFirestore, collection, addDoc} from 'firebase/firestore';
-import {getAuth, signInWithEmailAndPassword} from 'firebase/auth'
+import {getFirestore, addDoc, doc, collection} from 'firebase/firestore';
+import {getAuth, 
+        signInWithEmailAndPassword, 
+        signOut, 
+        onAuthStateChanged,
+      } from 'firebase/auth';
+import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBMu5d_yq7Df5qOWPHJy2w04Kqw_VPa_5w",
@@ -15,13 +20,16 @@ const firebaseConfig = {
 
   const firestore = getFirestore();
 
-  const MESSAGES = 'messages';
-
+  const USERS = 'Users';
+  
   export {
     firestore,
-    collection,
     addDoc,
-    MESSAGES,
     getAuth,
     signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    doc,
+    collection,
+    USERS
   };

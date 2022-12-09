@@ -13,6 +13,12 @@ export default StyleSheet.create({
         justifyContent: "center",
         width: "100%",
       },
+      logo: {
+        alignItems: "center",
+        width: "30%",
+        height: "50%",
+        resizeMode: 'stretch',
+      },
      
       image: {
         flex: 1,
@@ -41,13 +47,15 @@ export default StyleSheet.create({
       TextInput: {
         height: 50,
         flex: 1,
-        padding: 10,
+        padding: 12,
         marginLeft: 20,
+        fontWeight: "bold"
       },
      
       forgot_button: {
         height: 30,
         marginBottom: 30,
+        fontWeight:"bold"
       },
      
       loginBtn: {
@@ -59,4 +67,34 @@ export default StyleSheet.create({
         marginTop: 40,
         backgroundColor: "#FF1493",
       },
+      loginText: {
+        fontWeight:"bold"
+      },
+      bars: {
+        fontSize: 25
+      },
+      dropdown_1: {
+        flex: 0,
+        top: 0,
+        left: 0,
+      },
+      user: {
+        padding: 10,
+        marginTop: 10,
+        marginBottom: 10,
+        backgroundColor: '#f5f5f5',
+        borderColor: '#ccc',
+        borderWidth: 1,
+        borderRadius: 5,
+        marginLeft: 10,
+        marginRight: 10
+      },
+      userInfo: {
+        fontSize: 12
+      },
+      welcome: {
+        fontSize: 30,
+        fontWeight: "bold"
+      }
+      
     })

@@ -1,12 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import logo from '../assets/logo.png'
+import Styles from '../Styles'
 
 class TopBar extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>...</Text>
-        <Text>Lissu</Text>
+        <Text></Text>
+        <Image style={Styles.logo} source={logo}></Image>
         <Text></Text>
       </View>
     );
