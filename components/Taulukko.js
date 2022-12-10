@@ -3,7 +3,7 @@ import { StyleSheet, View, SafeAreaView, FlatList, Text, ScrollView, StatusBar }
 import {DATA} from '../Data'
 import Row from './Row'
 import Header from './Header'
-import { onSnapshot, query} from 'firebase/firestore';
+import { onSnapshot, query, where} from 'firebase/firestore';
 import { firestore, collection, USERS,} from '../firebase/Config'
 
 
@@ -12,24 +12,23 @@ import { firestore, collection, USERS,} from '../firebase/Config'
   const [userss, setNewUserss] = useState([])
 
   useEffect(() => {
-    const q = query(collection(firestore,USERS));
+    const q = query(collection(firestore,USERS), where("role", "==", "Student"));
+     //Tohon "Student"-sanan paikalle propsina luokan nimi, jotta databaesta saa seulottua oikean luokan oppilaat.
+    
 
     const unsubscribe = onSnapshot(q,(querySnapshot) => {
       const tempMessages = []
       
       querySnapshot.forEach((doc) => {
-        if(doc.data().role == "Teacher"){
-          const messageObject = {
-            id: doc.id,
-            text: (doc.data().fName + " " + doc.data().lName + ", opettaja")
-          }
-          tempMessages.push(messageObject)}
-        if(doc.data().role == "Student"){
         const messageObject = {
           id: doc.id,
-          text: (doc.data().fName + " " + doc.data().lName + ", oppilas")
-        }
-        tempMessages.push(messageObject)}
+          nimi: (doc.data().fName + " " + doc.data().lName),
+          akt: (doc.data().aktiivinen),
+          kTeht: (doc.data().kotiteht),
+          minus: (doc.data().miinus),
+          plus: (doc.data().plussa)}
+
+        tempMessages.push(messageObject)
       })
       setNewUserss(tempMessages)
     })

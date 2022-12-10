@@ -10,11 +10,11 @@ export default function Row({person, selectedId, select}) {
     
     <Pressable onLongPress={() => select(person.id)}>
     <View style = {[styles.row, {backgroundColor}]}>
-    <View style={[styles.box, {backgroundColor: 'lightgrey'}, {width: 100}]}><Text >{person.text}</Text></View>
-    <View style={styles.box}><Text >{person.hyvä}</Text></View>
-    <View style={styles.box}><Text>{person.huono}</Text></View>
-    <View style={styles.box}><Text>{person.hairinta}</Text></View>
-    <View style={styles.box}><Text>{person.kotiteht}</Text></View>
+    <View style={[styles.box, {backgroundColor: 'lightgrey'}, {width: 100}]}><Text >{person.nimi}</Text></View>
+    <View style={styles.box}><Text >{person.plus}</Text></View>
+    <View style={styles.box}><Text>{person.minus}</Text></View>
+    <View style={styles.box}><Text>{person.kTeht}</Text></View>
+    <View style={styles.box}><Text>{person.akt}</Text></View>
     </View>
     </Pressable>
     
