@@ -5,6 +5,7 @@ import styles from './Styles';
 import TopBar from './components/TopBar';
 import Luokka from "./Luokka";
 import Taulukko from "./components/Taulukko";
+import LuokanLuonti from './components/LuokanLuonti'
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {getAuth, signInWithEmailAndPassword, firebase} from './firebase/Config'
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -90,6 +91,8 @@ export default function App() {
             <MaterialCommunityIcons name="google-classroom" color={color} size={26} />),}}/>
       <Tab.Screen name="LuokkaTaulukko" component={Taulukko} options={{tabBarLabel: 'Luokka',tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="google-classroom" color={color} size={26} />),}}/>
+      <Tab.Screen name="LuokanLuonti" component={LuokanLuonti} options={{tabBarLabel: 'Luo',tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="plus" color={color} size={26} />),}}/>
             </Tab.Navigator>
     </NavigationContainer>
   );

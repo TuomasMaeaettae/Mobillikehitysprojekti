@@ -1,7 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import {View, Text} from "react-native";
+import { StyleSheet, View, SafeAreaView, FlatList, Text, ScrollView, TouchableOpacity } from 'react-native';
 import styles from './Styles';
+import Luokanluonti from './components/LuokanLuonti'
 
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <View style={styles.container}> 
           <StatusBar style="auto" />
           <Text style={styles.welcome}>Tervetuloa Lissuun!</Text>
+          <Text> Luo uusi luokka painamalla plussaa!</Text>
       </View>
   );
 }
