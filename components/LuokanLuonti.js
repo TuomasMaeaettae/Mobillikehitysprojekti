@@ -5,7 +5,7 @@ import { firestore, collection, USERS, addDoc,} from '../firebase/Config'
 
 export default function LuokanLuonti() {
 
-    const save = async() => {const docRef = await addDoc(collection(firestore, USERS), {
+    const ebinTallennus = async() => {const docRef = await addDoc(collection(firestore, USERS), {
         fName: eNimi,
         lName: sNimi,
         luokka: luokka,
@@ -41,7 +41,7 @@ export default function LuokanLuonti() {
                 />
     </View>
     <Button 
-        onPress={() => {console.log(eNimi, sNimi, luokka), alert("Oppilas tallennettu"), save() }}
+        onPress={() => {console.log(eNimi, sNimi, luokka), alert("Oppilas tallennettu"), ebinTallennus() }}
         title="Tallenna oppilas"
         color="#841584">
     </Button>
