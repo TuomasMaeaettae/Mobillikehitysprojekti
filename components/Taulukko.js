@@ -12,7 +12,7 @@ import { firestore, collection, USERS,} from '../firebase/Config'
   const [userss, setNewUserss] = useState([])
 
   useEffect(() => {
-    const q = query(collection(firestore,USERS), where("role", "==", "Student"));
+    const q = query(collection(firestore,USERS), where( "luokka", "==", "666"), where("role", "==", "Student",));
      //Tohon "Student"-sanan paikalle propsina luokan nimi, jotta databaesta saa seulottua oikean luokan oppilaat.
     
 
