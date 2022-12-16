@@ -13,7 +13,6 @@ export default function LuokanLuonti() {
       });
       console.log("Document written with ID: ", docRef.id);}
 
-
     const [eNimi, onChangeeNimi] = useState('');
     const [sNimi, onChangesNimi] = useState('');
     const [luokka, onChangeluokka] = useState('')
