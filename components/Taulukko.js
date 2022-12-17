@@ -7,12 +7,18 @@ import { onSnapshot, query, where} from 'firebase/firestore';
 import { firestore, collection, USERS,} from '../firebase/Config'
 
 
- export default function App() {
+ export default function App({route}) {
+
+  
+  
+
   const [selectedId, setSelectedId] = useState(null);
   const [userss, setNewUserss] = useState([])
 
   useEffect(() => {
-    const q = query(collection(firestore,USERS), where( "luokka", "==", "666"), where("role", "==", "Student",));
+    const luokka2 = route.params;
+    const q = query(collection(firestore,USERS), where( "luokka", "==", luokka2.luokka.luokka));
+    console.log(luokka2.luokka.luokka, "jippii")
      //Tohon "Student"-sanan paikalle propsina luokan nimi, jotta databaesta saa seulottua oikean luokan oppilaat.
     
 
@@ -26,7 +32,8 @@ import { firestore, collection, USERS,} from '../firebase/Config'
           akt: (doc.data().aktiivinen),
           kTeht: (doc.data().kotiteht),
           minus: (doc.data().miinus),
-          plus: (doc.data().plussa)}
+          plus: (doc.data().plussa),
+          luokka: (doc.data().luokka)}
 
         tempMessages.push(messageObject)
       })
@@ -37,7 +44,7 @@ import { firestore, collection, USERS,} from '../firebase/Config'
       unsubscribe()
     }
   }, [])
-  console.log(userss)
+  //console.log(userss)
 
   const select = (id) => {
     setSelectedId(id);

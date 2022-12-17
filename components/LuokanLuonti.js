@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 import { firestore, collection, USERS, addDoc,} from '../firebase/Config'
 
 
-export default function LuokanLuonti() {
+export default function LuokanLuonti({route}) {
 
     const ebinTallennus = async() => {const docRef = await addDoc(collection(firestore, USERS), {
         fName: eNimi,

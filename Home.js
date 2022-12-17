@@ -46,7 +46,7 @@ export default function Home({navigation}) {
           
           <View  >
               {luokat.map((luokka, index) =>(
-             <TouchableOpacity style={{borderWidth : 1}} key={index}  onPress={() => (navigation.navigate('LuokanLuonti'), {luokka2}, console.log(luokka))}><Text>{luokka.luokka}</Text></TouchableOpacity>)
+             <TouchableOpacity style={{borderWidth : 1}} key={index}  onPress={() => (navigation.navigate('LuokkaTaulukko', {luokka}), console.log(luokka, "juujuu"))}><Text>{luokka.luokka}</Text></TouchableOpacity>)
             )}
           </View>
       </View>
