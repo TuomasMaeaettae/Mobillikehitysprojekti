@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, View, SafeAreaView, FlatList, Text, ScrollView, StatusBar } from 'react-native';
 import {DATA} from '../Data'
 import Row from './Row'
 import Header from './Header'
 import { onSnapshot, query, where} from 'firebase/firestore';
 import { firestore, collection, USERS,} from '../firebase/Config'
+import { useFocusEffect } from '@react-navigation/native';
 
 
  export default function App({route}) {
 
-  
-  
-
   const [selectedId, setSelectedId] = useState(null);
   const [userss, setNewUserss] = useState([])
+  const luokka2 = route.params;
+  console.log(luokka2.luokka.luokka, "jippii")
 
-  useEffect(() => {
-    const luokka2 = route.params;
+    useEffect(() => {
+    
     const q = query(collection(firestore,USERS), where( "luokka", "==", luokka2.luokka.luokka));
-    console.log(luokka2.luokka.luokka, "jippii")
+    
      //Tohon "Student"-sanan paikalle propsina luokan nimi, jotta databaesta saa seulottua oikean luokan oppilaat.
     
 
@@ -41,9 +41,10 @@ import { firestore, collection, USERS,} from '../firebase/Config'
     })
 
     return () => {
-      unsubscribe()
+      unsubscribe() 
     }
-  }, [])
+
+  }, [route])
   //console.log(userss)
 
   const select = (id) => {
@@ -93,3 +94,36 @@ const styles = StyleSheet.create({
   }
 })
 
+/*useFocusEffect(
+    useCallback(() => {
+    
+    const q = query(collection(firestore,USERS), where( "luokka", "==", luokka2.luokka.luokka));
+    
+     //Tohon "Student"-sanan paikalle propsina luokan nimi, jotta databaesta saa seulottua oikean luokan oppilaat.
+    
+
+    const unsubscribe = onSnapshot(q,(querySnapshot) => {
+      const tempMessages = []
+      
+      querySnapshot.forEach((doc) => {
+        const messageObject = {
+          id: doc.id,
+          nimi: (doc.data().fName + " " + doc.data().lName),
+          akt: (doc.data().aktiivinen),
+          kTeht: (doc.data().kotiteht),
+          minus: (doc.data().miinus),
+          plus: (doc.data().plussa),
+          luokka: (doc.data().luokka)}
+
+        tempMessages.push(messageObject)
+      })
+      setNewUserss(tempMessages)
+    })
+
+    return () => {
+      unsubscribe()
+      
+      
+    }
+
+  }, [route])) */

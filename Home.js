@@ -23,6 +23,7 @@ export default function Home({navigation}) {
 
         tempMessages.push(messageObject)
       })
+      if
       addNewLuokka(tempMessages)
     })
 
