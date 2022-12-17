@@ -32,7 +32,8 @@ export default function Luokka({navigation}) {
           akt: (doc.data().aktiivinen),
           kTeht: (doc.data().kotiteht),
           minus: (doc.data().miinus),
-          plus: (doc.data().plussa)}
+          plus: (doc.data().plussa),
+          hair: (doc.data().hairinta)}
         
         tempMessages.push(messageObject)}
       })
@@ -67,7 +68,7 @@ export default function Luokka({navigation}) {
     console.log("nappia hairinta")
     const plussaRef = doc(firestore, USERS, user.id)
     await updateDoc(plussaRef, {
-      hairinta: user.hairinta+1
+      hairinta: user.hair+1
     })
   }
 
