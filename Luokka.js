@@ -26,8 +26,12 @@ export default function Luokka({navigation}) {
         if(doc.data().role == "Student"){
         const messageObject = {
           id: doc.id,
-          text: (doc.data().fName + " " + doc.data().lName + ", oppilas"),
-        }
+          nimi: (doc.data().fName + " " + doc.data().lName),
+          akt: (doc.data().aktiivinen),
+          kTeht: (doc.data().kotiteht),
+          minus: (doc.data().miinus),
+          plus: (doc.data().plussa)}
+        
         tempMessages.push(messageObject)}
       })
       setNewUserss(tempMessages)
@@ -45,10 +49,31 @@ export default function Luokka({navigation}) {
         userss.map((user) => (
           <View style={styles.user} key={user.id}>
             <Text style={styles.userInfo}></Text>
-            <Text>{user.text}</Text>
+            <Text>{user.nimi}</Text>
             <AntDesign
                 style={styles.navButton}
                 name="message1"
+                size={24}
+                color="black"
+                onPress={() => navigation.navigate('Message')}
+            />
+            <AntDesign
+                style={styles.navButton}
+                name="plus"
+                size={24}
+                color="black"
+                onPress={() => navigation.navigate('Message')}
+            />
+            <AntDesign
+                style={styles.navButton}
+                name="minus"
+                size={24}
+                color="black"
+                onPress={() => navigation.navigate('Message')}
+            />
+            <AntDesign
+                style={styles.navButton}
+                name="book"
                 size={24}
                 color="black"
                 onPress={() => navigation.navigate('Message')}
