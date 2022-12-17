@@ -2,9 +2,10 @@ import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState, useLayoutEffect } from "react";
 import {Text, View, ScrollView, Modal, TextInput, TouchableOpacity, ModalInfo} from "react-native";
 import styles from './Styles';
-import { onSnapshot, query, where} from 'firebase/firestore';
+import { doc, onSnapshot, query, where} from 'firebase/firestore';
 import { firestore, collection, USERS, MESSAGES, addDoc, updateDoc, setDoc} from './firebase/Config'
 import { AntDesign } from '@expo/vector-icons';
+import { increment } from "firebase/database";
 
 export default function Luokka({navigation}) {
   const [userss, setNewUserss] = useState([])
@@ -46,12 +47,34 @@ export default function Luokka({navigation}) {
     console.log(user, "jiihaa")
   }
 
-  const ebinTallennusplus = async(user) => {const docRef = await updateDoc(collection(firestore, USERS), {
-    uid: user.id,
-    fName: user.fNimi,
-    lName: user.lNimi,
-    plussa: user.plus+1
-  })};
+  const ebinTallennusPlus = async (user) => {
+    console.log("nappia plus")
+    const plussaRef = doc(firestore, USERS, user.id)
+    await updateDoc(plussaRef, {
+      plussa: user.plus+1
+    })
+  }
+
+  const ebinTallennusMinus = async (user) => {
+    console.log("nappia minus")
+    const plussaRef = doc(firestore, USERS, user.id)
+    await updateDoc(plussaRef, {
+      miinus: user.minus+1
+    })
+  }
+
+  const ebinTallennusHair = async (user) => {
+    console.log("nappia hairinta")
+    const plussaRef = doc(firestore, USERS, user.id)
+    await updateDoc(plussaRef, {
+      hairinta: user.hairinta+1
+    })
+  }
+
+  
+ /* const ebinTallennusplus = async() => {const docRef = await updateDoc(collection(firestore, USERS), {
+    plussa: increment(1)
+  })};*/
 
   return(
     <View style={styles.container}>
@@ -73,21 +96,21 @@ export default function Luokka({navigation}) {
                 name="plus"
                 size={24}
                 color="black"
-                onPress={() => ebinTallennusplus(user.plus)}
+                onPress={() => ebinTallennusPlus(user)}
             />
             <AntDesign
                 style={styles.navButton}
                 name="minus"
                 size={24}
                 color="black"
-                onPress={() => navigation.navigate('Message')}
+                onPress={() => ebinTallennusMinus(user)}
             />
             <AntDesign
                 style={styles.navButton}
                 name="book"
                 size={24}
                 color="black"
-                onPress={() => navigation.navigate('Message')}
+                onPress={() => ebinTallennusHair(user)}
             />
           </View>
         ))
