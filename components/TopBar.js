@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.webp'
 import Styles from '../Styles'
 
 class TopBar extends React.Component {
@@ -20,12 +20,14 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     height: 100,
     flexDirection: 'row',
-    backgroundColor: 'pink',
+    backgroundColor: '#ff69b4',
     alignItems: 'center',
     justifyContent: 'space-between', 
     paddingLeft: 10,
     paddingRight: 10,
     fontWeight:'bold',
+    borderBottomWidth: 2,
+    borderColor: "black"
   }
 });
 

@@ -21,6 +21,8 @@ const firebaseConfig = {
   const firestore = getFirestore();
 
   const USERS = 'Users';
+  const CLASSES = 'CLASSES';
+  const VIESTI = 'Messages';
   
   export {
     firestore,
@@ -31,5 +33,7 @@ const firebaseConfig = {
     onAuthStateChanged,
     doc,
     collection,
-    USERS
+    USERS,
+    CLASSES,
+    VIESTI
   };
