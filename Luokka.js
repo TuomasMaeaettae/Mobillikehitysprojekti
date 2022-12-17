@@ -3,7 +3,7 @@ import React, { useEffect, useState, useLayoutEffect } from "react";
 import {Text, View, ScrollView, Modal, TextInput, TouchableOpacity, ModalInfo} from "react-native";
 import styles from './Styles';
 import { onSnapshot, query, where} from 'firebase/firestore';
-import { firestore, collection, USERS, MESSAGES} from './firebase/Config'
+import { firestore, collection, USERS, MESSAGES, addDoc, updateDoc, setDoc} from './firebase/Config'
 import { AntDesign } from '@expo/vector-icons';
 
 export default function Luokka({navigation}) {
@@ -26,7 +26,8 @@ export default function Luokka({navigation}) {
         if(doc.data().role == "Student"){
         const messageObject = {
           id: doc.id,
-          nimi: (doc.data().fName + " " + doc.data().lName),
+          fNimi: (doc.data().fName),
+          lNimi: (doc.data().lName),
           akt: (doc.data().aktiivinen),
           kTeht: (doc.data().kotiteht),
           minus: (doc.data().miinus),
@@ -41,15 +42,25 @@ export default function Luokka({navigation}) {
       unsubscribe()
     }
   }, [])
+  const ebinTallennusplus2  = (user) => {
+    console.log(user, "jiihaa")
+  }
+
+  const ebinTallennusplus = async(user) => {const docRef = await updateDoc(collection(firestore, USERS), {
+    uid: user.id,
+    fName: user.fNimi,
+    lName: user.lNimi,
+    plussa: user.plus+1
+  })};
 
   return(
     <View style={styles.container}>
     <ScrollView>
       {
-        userss.map((user) => (
+        userss.map((user, index) => (
           <View style={styles.user} key={user.id}>
             <Text style={styles.userInfo}></Text>
-            <Text>{user.nimi}</Text>
+            <Text>{user.fNimi} {user.lNimi}</Text>
             <AntDesign
                 style={styles.navButton}
                 name="message1"
@@ -62,7 +73,7 @@ export default function Luokka({navigation}) {
                 name="plus"
                 size={24}
                 color="black"
-                onPress={() => navigation.navigate('Message')}
+                onPress={() => ebinTallennusplus(user.plus)}
             />
             <AntDesign
                 style={styles.navButton}
@@ -84,4 +95,4 @@ export default function Luokka({navigation}) {
     </ScrollView>
   </View>
   );
-}
+    }
