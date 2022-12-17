@@ -10,6 +10,7 @@ export default function Home({navigation}) {
   const [selectedId, setSelectedId] = useState(null);
   const [luokat, addNewLuokka] = useState([])
   const [luokka2, addNewLuokka2] = useState([])
+  const [testi, addTesti] = useState([])
 
   useEffect(() => {
     const q = query(collection(firestore,USERS), where("role", "==", "Student",));
@@ -23,7 +24,6 @@ export default function Home({navigation}) {
 
         tempMessages.push(messageObject)
       })
-      if
       addNewLuokka(tempMessages)
     })
 
@@ -34,7 +34,7 @@ export default function Home({navigation}) {
 
   console.log(luokat , "Home näkymä")
   
-
+  
  
 
   return(
@@ -47,8 +47,8 @@ export default function Home({navigation}) {
           
           <View  >
               {luokat.map((luokka, index) =>(
-             <TouchableOpacity style={{borderWidth : 1}} key={index}  onPress={() => (navigation.navigate('LuokkaTaulukko', {luokka}), console.log(luokka, "juujuu"))}><Text>{luokka.luokka}</Text></TouchableOpacity>)
-            )}
+              <TouchableOpacity style={{borderWidth : 1}} key={index}  onPress={() => (navigation.navigate('LuokkaTaulukko', {luokka}), console.log(luokka, "juujuu"))}><Text>{luokka.luokka}</Text></TouchableOpacity>
+              ))}
           </View>
       </View>
   );
@@ -79,3 +79,20 @@ export default function Home({navigation}) {
 
   const luokka = luokat.map(luonti)
 console.log(luokka , "rrrrr")*/
+
+/* 
+<View  >
+              {luokat.map((luokka, index) =>(
+               (luokka.includes(luokka.luokka)
+             ? (<TouchableOpacity style={{borderWidth : 1}} key={index}  onPress={() => (navigation.navigate('LuokkaTaulukko', {luokka}), console.log(luokka, "juujuu"))}><Text>{luokka.luokka}</Text></TouchableOpacity>)
+             : null)
+               ))}
+          </View>*/
+
+
+/**luokat.map((luokka) =>{
+   if (luokka.includesOnce(testi.luokka))
+   {
+      addNewLuokka2(luokka.luokka)
+   }
+   }) */
