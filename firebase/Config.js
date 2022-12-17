@@ -1,5 +1,5 @@
 import {initializeApp} from 'firebase/app';
-import {getFirestore, addDoc, doc, collection} from 'firebase/firestore';
+import {getFirestore, addDoc, doc, collection, orderBy, serverTimestamp} from 'firebase/firestore';
 import {getAuth, 
         signInWithEmailAndPassword, 
         signOut, 
@@ -21,6 +21,8 @@ const firebaseConfig = {
   const firestore = getFirestore();
 
   const USERS = 'Users';
+  const MESSAGES = 'Messages';
+  const VIESTI = 'Viesti'
   
   export {
     firestore,
@@ -31,5 +33,9 @@ const firebaseConfig = {
     onAuthStateChanged,
     doc,
     collection,
-    USERS
+    orderBy,
+    serverTimestamp,
+    USERS,
+    MESSAGES,
+    VIESTI
   };

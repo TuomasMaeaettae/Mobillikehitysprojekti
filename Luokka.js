@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
-import {Text, View, ScrollView} from "react-native";
+import { StatusBar } from "expo-status-bar";
+import React, { useEffect, useState, useLayoutEffect } from "react";
+import {Text, View, ScrollView, Modal, TextInput, TouchableOpacity, ModalInfo} from "react-native";
 import styles from './Styles';
-import { onSnapshot, query} from 'firebase/firestore';
-import { firestore, collection, USERS,} from './firebase/Config'
+import { onSnapshot, query, where} from 'firebase/firestore';
+import { firestore, collection, USERS, MESSAGES} from './firebase/Config'
+import { AntDesign } from '@expo/vector-icons';
 
-export default function Luokka() {
+export default function Luokka({navigation}) {
   const [userss, setNewUserss] = useState([])
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     const q = query(collection(firestore,USERS));
@@ -23,7 +26,7 @@ export default function Luokka() {
         if(doc.data().role == "Student"){
         const messageObject = {
           id: doc.id,
-          text: (doc.data().fName + " " + doc.data().lName + ", oppilas")
+          text: (doc.data().fName + " " + doc.data().lName + ", oppilas"),
         }
         tempMessages.push(messageObject)}
       })
@@ -35,18 +38,25 @@ export default function Luokka() {
     }
   }, [])
 
-return(
-  <View style={styles.container}>
-  <ScrollView>
-    {
-      userss.map((user) => (
-        <View style={styles.user} key={user.id}>
-          <Text style={styles.userInfo}></Text>
-          <Text>{user.text}</Text>
-        </View>
-      ))
-    }
-  </ScrollView>
-</View>
-);
+  return(
+    <View style={styles.container}>
+    <ScrollView>
+      {
+        userss.map((user) => (
+          <View style={styles.user} key={user.id}>
+            <Text style={styles.userInfo}></Text>
+            <Text>{user.text}</Text>
+            <AntDesign
+                style={styles.navButton}
+                name="message1"
+                size={24}
+                color="black"
+                onPress={() => navigation.navigate('Message')}
+            />
+          </View>
+        ))
+      }
+    </ScrollView>
+  </View>
+  );
 }
