@@ -9,7 +9,11 @@ export default function LuokanLuonti({route}) {
         fName: eNimi,
         lName: sNimi,
         luokka: luokka,
-        role: "Student"
+        role: "Student",
+        hairinta: 0,
+        plussa: 0,
+        miinus: 0,
+
       });
       console.log("Document written with ID: ", docRef.id);}
 
