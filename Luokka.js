@@ -85,14 +85,6 @@ export default function Luokka({route, navigation}) {
             <Text style={Styles.userInfo}></Text>
             <Text style={styles.nimi}>{user.nimi}</Text>
             <View style = {styles.row}>
-              <TouchableOpacity>
-            <AntDesign
-                style={styles.navButton2}
-                name="message1"
-                size={24}
-                color="black"
-                onPress={() => navigation.navigate("Message", )}
-            /></TouchableOpacity>
             <AntDesign
                 style={styles.navButton}
                 name="plus"
@@ -136,6 +128,7 @@ const styles = StyleSheet.create({
     margin: 10,
     backgroundColor: 'green',
     borderRadius: 25,
+    marginLeft: 60,
   },
   navButton3:{
     padding: 10,

@@ -112,8 +112,6 @@ export default function App() {
             <MaterialCommunityIcons name="google-classroom" color={color} size={26} />),}}/>
             <Tab.Screen name="LuokkaTaulukko" component={Taulukko} options={{tabBarLabel: 'Tarkastus',tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="archive-check" color={color} size={26} />),}}/>
-            <Tab.Screen name="Message" component={Message} options={{Shown: false, tabBarLabel: 'Viesti',tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="message" color={color} size={26} />),}}/>
       <Tab.Screen name="LuokanLuonti" component={LuokanLuonti} options={{tabBarLabel: 'Luo oppilas',tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="plus" color={color} size={26} />),}}/>
             </Tab.Navigator>
