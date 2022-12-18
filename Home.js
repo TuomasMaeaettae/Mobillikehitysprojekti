@@ -12,73 +12,50 @@ export default function Home({navigation}) {
   const [name, setName] = useState([])
   const [opetettavat1, setOpetettavat1] = useState([])
   const [opetettavat2, setOpetettavat2] = useState([])
-
-  useEffect(() => {
-  const q = query(collection(firestore,USERS));
-
-  const unsubscribe = onSnapshot(q,(querySnapshot) => {
-    const tempMessages = []
-    
-    querySnapshot.forEach((doc) => {
-      if(doc.data().uid == uid){
-        const messageObject = {
-          id: doc.id,
-          text: (doc.data().fName + " " + doc.data().lName),
-          opetettavat1: doc.data().opetettavat1,
-          opetettavat2: doc.data().opetettavat2
-        }
-        tempMessages.push(messageObject)}
-    })
-    setName(tempMessages)
-    setOpetettavat1(tempMessages)
-  })
-  return () => {
-    unsubscribe()
-  }
-}, [])
-const [luokat, addNewLuokka] = useState([])
+  const [luokat, addNewLuokka] = useState([])
   const [luokka2, addNewLuokka2] = useState([])
 
   useEffect(() => {
-    const q = query(collection(firestore,USERS), where("role", "==", "Student",));
-
+    const q = query(collection(firestore,USERS));
+  
     const unsubscribe = onSnapshot(q,(querySnapshot) => {
       const tempMessages = []
       
       querySnapshot.forEach((doc) => {
-        const messageObject = {
-          luokka: (doc.data().luokka)}
-
-        tempMessages.push(messageObject)
+        if(doc.data().uid == uid){
+          const messageObject = {
+            id: doc.id,
+            text: (doc.data().fName + " " + doc.data().lName),
+            opetettavat1: doc.data().opetettavat1,
+            opetettavat2: doc.data().opetettavat2
+          }
+          tempMessages.push(messageObject)}
       })
-      addNewLuokka(tempMessages)
+      setName(tempMessages)
+      setOpetettavat1(tempMessages)
     })
-
     return () => {
       unsubscribe()
     }
   }, [])
+
   useEffect(() => {
     const q = query(collection(firestore,CLASSES));
-
     const unsubscribe = onSnapshot(q,(querySnapshot) => {
       const tempMessages = []
-      
       querySnapshot.forEach((doc) => {
         const messageObject = {
           luokka: (doc.data().luokka)}
-
         tempMessages.push(messageObject)
       })
       addNewLuokka2(tempMessages)
     })
-
     return () => {
       unsubscribe()
-    }
-  }, [])
+    }}, [])
 
   console.log(luokat , "Home näkymä")
+  console.log(name)
 
   return(
     <ScrollView>
@@ -93,9 +70,9 @@ const [luokat, addNewLuokka] = useState([])
         </View>
       ))
     }
-    <Text> Luo uusi luokka painamalla plussaa!</Text>
+    <Text> Luo uusi oppilas painamalla plussaa!</Text>
           <Text> Alla näet listan koulun luokista</Text>
-          <Text> Klikkaamalla pääset antamaan palautetta</Text>
+          <Text> Klikkaamalla luokkaa pääset antamaan palautetta</Text>
           <View>
               {
               luokka2.map((luokka, index) =>(

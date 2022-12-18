@@ -7,6 +7,7 @@ import Luokka from "./Luokka";
 import Message from "./Message";
 import Taulukko from "./components/Taulukko";
 import LuokanLuonti from './components/LuokanLuonti'
+import HomeStudent from './HomeStudent'
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {getAuth, signInWithEmailAndPassword, firebase} from './firebase/Config'
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -80,7 +81,7 @@ export default function App() {
         <TextInput style={styles.TextInput} placeholder="salasana" placeholderTextColor="black" secureTextEntry={true} onChangeText={(password) => setPassword(password)}/>
       </View>
       <TouchableOpacity>
-        <Text style={styles.forgot_button}>Unohditko salasanasi?</Text>
+        <Text style={Styles.texti}>Aloita kirjoittamalla sähköpostisi ja salasanasi, jonka jälkeen paina "KIRJAUDU SISÄÄN" -painiketta</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.loginBtn} onPress={login}>
         <Text style={styles.loginText}>KIRJAUDU SISÄÄN</Text>
@@ -95,7 +96,7 @@ export default function App() {
     <NavigationContainer>
       <TopBar2></TopBar2>
       <Tab.Navigator screenOptions={{headerShown: false}}>
-        <Tab.Screen name="Home" component={Home} options={{tabBarLabel: 'Etusivu',tabBarIcon: ({ color }) => (
+        <Tab.Screen name="Home" component={HomeStudent} options={{tabBarLabel: 'Etusivu',tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />),}}/>
             </Tab.Navigator>
     </NavigationContainer>
@@ -107,11 +108,11 @@ export default function App() {
       <Tab.Navigator screenOptions={{headerShown: false}}>
         <Tab.Screen name="Home" component={Home} options={{tabBarLabel: 'Etusivu',tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />),}}/>
-      <Tab.Screen name="Luokka" component={Luokka} options={{tabBarLabel: 'Palautteenanto',tabBarIcon: ({ color }) => (
+      <Tab.Screen name="Luokka" component={Luokka} options={{tabBarLabel: 'Palaute',tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="google-classroom" color={color} size={26} />),}}/>
-            <Tab.Screen name="LuokkaTaulukko" component={Taulukko} options={{tabBarLabel: 'Luokka',tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="google-classroom" color={color} size={26} />),}}/>
-            <Stack.Screen name="Message" component={Message} options={{tabBarLabel: 'Viesti',tabBarIcon: ({ color }) => (
+            <Tab.Screen name="LuokkaTaulukko" component={Taulukko} options={{tabBarLabel: 'Tarkastus',tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="archive-check" color={color} size={26} />),}}/>
+            <Tab.Screen name="Message" component={Message} options={{Shown: false, tabBarLabel: 'Viesti',tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="message" color={color} size={26} />),}}/>
       <Tab.Screen name="LuokanLuonti" component={LuokanLuonti} options={{tabBarLabel: 'Luo oppilas',tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="plus" color={color} size={26} />),}}/>
@@ -131,6 +132,11 @@ justifyContent: 'space-between',
 paddingLeft: 10,
 paddingRight: 10,
 fontWeight:'bold',
+},
+texti:{
+  margin: 10,
+  marginBottom: -30,
+  marginTop: -10
 }
 });
 

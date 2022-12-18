@@ -128,7 +128,8 @@ export default StyleSheet.create({
       },
       userInfo3: {
         fontSize: 30,
-        fontWeight:"bold"
+        fontWeight:"bold",
+        marginTop: -20
       },
       kuvakkeet: {
         backgroundColor:"black"
@@ -140,11 +141,22 @@ export default StyleSheet.create({
         marginTop:28
       },
       luokkalistaus: {
-        borderWidth: 1,
+        borderWidth: 0,
         width: 200,
         alignItems: "center",
         backgroundColor: '#9370db',
-        margin: 5
+        margin: 5,
+        borderRadius: 25,
+      },
+      luokkalistaus2: {
+        borderWidth: 0,
+        width: 300,
+        alignItems: "center",
+        backgroundColor: '#9370db',
+        margin: 5,
+        borderRadius: 25,
+        height: 40,
+        marginLeft: 17
       },
       luokkatext: {
         fontWeight: "bold",
@@ -153,6 +165,7 @@ export default StyleSheet.create({
       luokkatext2: {
         fontWeight: "bold",
         fontSize: 20,
+        marginTop: 5
       },
       
       
